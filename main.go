@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/codegangsta/negroni"
-	"github.com/lair-framework/api-server/app"
+	"github.com/r0p0s3c/api-server/app"
 	"gopkg.in/mgo.v2"
 )
 
