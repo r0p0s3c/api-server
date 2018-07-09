@@ -181,9 +181,13 @@ func (a *App) newProjectAuthHandler(f func(w http.ResponseWriter, r *http.Reques
 
 // Status is an http handler for a GET request to check the status of the service
 func (a *App) Status(w http.ResponseWriter, req *http.Request) {
-	if err := a.S.Ping(); err != nil {
+	session := a.S.Clone()
+        defer session.Close()
+
+	if err := session.Ping(); err!= nil {
 		a.R.JSON(w, http.StatusInternalServerError, &Response{Status: "Error", Message: err.Error()})
 		return
 	}
+
 	a.R.JSON(w, http.StatusOK, nil)
 }
